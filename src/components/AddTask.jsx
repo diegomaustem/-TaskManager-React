@@ -9,6 +9,13 @@ export default function AddTask({ OnAddTaskSubmit }) {
     setDescription("");
   }
 
+  function validationFields() {
+    if (!title.trim() || !description.trim()) {
+      return alert("The fields can't empty");
+    }
+    return true;
+  }
+
   return (
     <div className="space-y-4 p-6 bg-my-gray rounded-md shadow flex flex-col">
       <input
@@ -27,7 +34,9 @@ export default function AddTask({ OnAddTaskSubmit }) {
       />
       <button
         onClick={() => {
-          OnAddTaskSubmit(title, description), clearFieldsAfterInsertion();
+          if (validationFields() == true) {
+            OnAddTaskSubmit(title, description), clearFieldsAfterInsertion();
+          }
         }}
         className="bg-dark-blue text-white p-2 rounded-md"
       >
