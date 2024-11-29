@@ -53,7 +53,7 @@ export default function App() {
     <div className="w-screen h-screen bg-gray-200 flex justify-center p-6">
       <div className="w-[500px] space-y-4">
         <h1 className="text-3xl text-gray-800 font-bold text-center">
-          Gerenciador de tarefas
+          Tasks Manager
         </h1>
         <AddTask OnAddTaskSubmit={OnAddTaskSubmit} />
         <Tasks
