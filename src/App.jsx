@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AddTask from "./components/AddTask";
 import Tasks from "./components/Tasks";
 import { v4 } from "uuid";
+import axios from "axios";
 
 export default function App() {
   const [tasks, setTasks] = useState(
@@ -11,6 +12,18 @@ export default function App() {
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
+
+  useEffect(() => {
+    async function getTasks() {
+      const response = await axios.get(
+        "https://jsonplaceholder.typicode.com/todos?_limit=10"
+      );
+      const data = response.data;
+      setTasks(data);
+    }
+    // CASO DESEJAR PODE CHAMAR UMA API E PEGAR AS TAREFAS :::
+    // getTasks();
+  }, []);
 
   function onTaskClick(taskId) {
     const newTasks = tasks.map((task) => {
